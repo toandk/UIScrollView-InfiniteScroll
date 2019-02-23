@@ -17,6 +17,8 @@ class TableViewController: UITableViewController {
     fileprivate var numPages = 0
     fileprivate var stories = [HackerNewsStory]()
     
+    fileprivate var infiniteScroll: InfiniteScroll<UITableView>?
+    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -27,21 +29,34 @@ class TableViewController: UITableViewController {
             tableView.rowHeight = UITableViewAutomaticDimension
         }
         
-        // Set custom indicator
-        tableView.infiniteScrollIndicatorView = CustomInfiniteIndicator(frame: CGRect(x: 0, y: 0, width: 24, height: 24))
-        
-        // Set custom indicator margin
-        tableView.infiniteScrollIndicatorMargin = 40
-        
-        // Set custom trigger offset
-        tableView.infiniteScrollTriggerOffset = 500
-        
-        // Add infinite scroll handler
-        tableView.addInfiniteScroll { [weak self] (tableView) -> Void in
+        let infiniteScroll = InfiniteScroll(scrollView: self.tableView, scrollDirection: .vertical)
+        infiniteScroll.didBeginUpdating = { [weak self] (tableView, finish) in
+            print("didBeginUpdating")
+            
             self?.performFetch {
-                tableView.finishInfiniteScroll()
+                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(5), execute: {                    
+                    finish()
+                })
             }
         }
+        
+        infiniteScroll.didFinishUpdating = { (tableView) in
+            print("didFinishUpdating")
+        }
+        
+        infiniteScroll.shouldBeginUpdating = { () -> Bool in
+            print("shouldBeginUpdating")
+            return true
+        }
+        
+        // Set custom indicator
+        infiniteScroll.indicatorView = CustomInfiniteIndicator(frame: CGRect(x: 0, y: 0, width: 24, height: 24))
+        
+        // Set custom indicator margin
+        infiniteScroll.indicatorMargins = UIEdgeInsets(top: 40, left: 0, bottom: 40, right: 0)
+        
+        // Set custom trigger offset
+        infiniteScroll.triggerOffset = 500
         
         // Uncomment this to provide conditionally prevent the infinite scroll from triggering
         /*
@@ -52,7 +67,9 @@ class TableViewController: UITableViewController {
         */
         
         // load initial data
-        tableView.beginInfiniteScroll(true)
+        infiniteScroll.begin(forceScroll: true)
+        
+        self.infiniteScroll = infiniteScroll
     }
     
     fileprivate func performFetch(_ completionHandler: (() -> Void)?) {
@@ -106,7 +123,7 @@ class TableViewController: UITableViewController {
 extension TableViewController {
     
     @IBAction func handleRefresh() {
-        tableView.beginInfiniteScroll(true)
+        infiniteScroll?.begin(forceScroll: true)
     }
     
 }

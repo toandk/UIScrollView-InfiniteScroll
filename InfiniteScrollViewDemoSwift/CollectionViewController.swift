@@ -16,26 +16,32 @@ class CollectionViewController: UICollectionViewController {
     fileprivate var items = [FlickrItem]()
     fileprivate var cache = NSCache<NSURL, UIImage>()
     
+    fileprivate var infiniteScroll: InfiniteScroll<UICollectionView>?
+    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let infiniteScroll = InfiniteScroll(scrollView: self.collectionView!, scrollDirection: .vertical)
+        
         // Set custom indicator
-        collectionView?.infiniteScrollIndicatorView = CustomInfiniteIndicator(frame: CGRect(x: 0, y: 0, width: 24, height: 24))
+        infiniteScroll.indicatorView = CustomInfiniteIndicator(frame: CGRect(x: 0, y: 0, width: 24, height: 24))
         
         // Set custom indicator margin
-        collectionView?.infiniteScrollIndicatorMargin = 40
+        infiniteScroll.indicatorMargins = UIEdgeInsets(top: 40, left: 0, bottom: 40, right: 0)
         
         // Add infinite scroll handler
-        collectionView?.addInfiniteScroll { [weak self] (scrollView) -> Void in
+        infiniteScroll.didBeginUpdating = { [weak self] (collectionView, finish) in
             self?.performFetch({
-                scrollView.finishInfiniteScroll()
+                finish()
             })
         }
         
         // load initial data
-        collectionView?.beginInfiniteScroll(true)
+        infiniteScroll.begin()
+        
+        self.infiniteScroll = infiniteScroll
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -121,7 +127,7 @@ class CollectionViewController: UICollectionViewController {
 extension CollectionViewController {
     
     @IBAction func handleRefresh() {
-        collectionView?.beginInfiniteScroll(true)
+        infiniteScroll?.begin(forceScroll: true)
     }
     
 }

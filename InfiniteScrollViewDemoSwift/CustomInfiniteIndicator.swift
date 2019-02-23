@@ -10,7 +10,7 @@ import UIKit
 
 private let rotationAnimationKey = "rotation"
 
-class CustomInfiniteIndicator: UIView {
+class CustomInfiniteIndicator: UIView, InfiniteIndicatorViewProtocol {
     
     var thickness: CGFloat = 2
     var outerColor = UIColor.gray.withAlphaComponent(0.2)
@@ -130,7 +130,7 @@ class CustomInfiniteIndicator: UIView {
         return animating
     }
     
-    @objc func startAnimating() {
+    func startAnimating() {
         if animating {
             return
         }
@@ -139,7 +139,7 @@ class CustomInfiniteIndicator: UIView {
         addAnimation()
     }
     
-    @objc func stopAnimationg() {
+    func stopAnimating() {
         if !animating {
             return
         }

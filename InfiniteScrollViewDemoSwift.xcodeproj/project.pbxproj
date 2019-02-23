@@ -16,8 +16,8 @@
 		58279BF31AF6ADCA0075D88A /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58279BF21AF6ADCA0075D88A /* TableViewController.swift */; };
 		58279BF51AF6AEDA0075D88A /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58279BF41AF6AEDA0075D88A /* CollectionViewController.swift */; };
 		58279C011AF6C8650075D88A /* CustomInfiniteIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58279C001AF6C8650075D88A /* CustomInfiniteIndicator.swift */; };
-		58279C081AF6DC9C0075D88A /* UIScrollView+InfiniteScroll.m in Sources */ = {isa = PBXBuildFile; fileRef = 58279C071AF6DC9C0075D88A /* UIScrollView+InfiniteScroll.m */; };
 		582A4ABF1DD8AB2D008203BA /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 582A4AC11DD8AB2D008203BA /* Localizable.strings */; };
+		584D24E9222164AD00B6252F /* InfiniteScroll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584D24E8222164AD00B6252F /* InfiniteScroll.swift */; };
 		58A7C91E1E09641A0084C93C /* FlickrResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58A7C91D1E09641A0084C93C /* FlickrResponse.swift */; };
 /* End PBXBuildFile section */
 
@@ -34,9 +34,8 @@
 		58279BF21AF6ADCA0075D88A /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		58279BF41AF6AEDA0075D88A /* CollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		58279C001AF6C8650075D88A /* CustomInfiniteIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomInfiniteIndicator.swift; sourceTree = "<group>"; };
-		58279C061AF6DC9C0075D88A /* UIScrollView+InfiniteScroll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIScrollView+InfiniteScroll.h"; path = "Classes/UIScrollView+InfiniteScroll.h"; sourceTree = SOURCE_ROOT; };
-		58279C071AF6DC9C0075D88A /* UIScrollView+InfiniteScroll.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIScrollView+InfiniteScroll.m"; path = "Classes/UIScrollView+InfiniteScroll.m"; sourceTree = SOURCE_ROOT; };
 		582A4AC01DD8AB2D008203BA /* en */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		584D24E8222164AD00B6252F /* InfiniteScroll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = InfiniteScroll.swift; path = Classes/InfiniteScroll.swift; sourceTree = SOURCE_ROOT; };
 		58A7C91D1E09641A0084C93C /* FlickrResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlickrResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -98,8 +97,7 @@
 		58279BEF1AF6AD2C0075D88A /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				58279C061AF6DC9C0075D88A /* UIScrollView+InfiniteScroll.h */,
-				58279C071AF6DC9C0075D88A /* UIScrollView+InfiniteScroll.m */,
+				584D24E8222164AD00B6252F /* InfiniteScroll.swift */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -194,7 +192,7 @@
 				58279BF51AF6AEDA0075D88A /* CollectionViewController.swift in Sources */,
 				581FB78B2083B7E0009BF7B8 /* HackerNewsResponse.swift in Sources */,
 				58279BF31AF6ADCA0075D88A /* TableViewController.swift in Sources */,
-				58279C081AF6DC9C0075D88A /* UIScrollView+InfiniteScroll.m in Sources */,
+				584D24E9222164AD00B6252F /* InfiniteScroll.swift in Sources */,
 				58279BC41AF6AC5D0075D88A /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
