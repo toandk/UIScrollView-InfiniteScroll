@@ -511,10 +511,11 @@ static const void *kPBInfiniteScrollStateKey = &kPBInfiniteScrollStateKey;
     [self pb_positionInfiniteScrollIndicatorWithContentSize:self.contentSize];
 
     // It's show time!
-    activityIndicator.hidden = NO;
-    if([activityIndicator respondsToSelector:@selector(startAnimating)]) {
-        [activityIndicator performSelector:@selector(startAnimating)];
-    }
+    // TA - Hide indicator infinity scroll view
+    activityIndicator.hidden = YES;
+//    if([activityIndicator respondsToSelector:@selector(startAnimating)]) {
+//        [activityIndicator performSelector:@selector(startAnimating)];
+//    }
 
     // Calculate indicator view inset
     CGFloat indicatorInset = [self pb_infiniteIndicatorRowSize];
